@@ -47,6 +47,17 @@
       user-select: none;
     }
 
+    /* ----- pulse animation for FEZ (restored) ----- */
+    @keyframes floatPulse {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-10px) scale(1.05); }
+    }
+
+    .fez-logo span {
+      display: inline-block;
+      animation: floatPulse 3s ease-in-out infinite;
+    }
+
     .fez-logo .f { color: var(--pink); }
     .fez-logo .e, .fez-logo .z {
       color: #fff;
@@ -82,6 +93,7 @@
       text-align: center;
       margin: 10px 0;
       line-height: 1.4;
+      /* nothing here that hides or animates on update */
     }
 
     .footer {
@@ -117,25 +129,29 @@
   </footer>
 
   <script>
-    const API_URL = "http://<YOUR_SERVER_IP>:5001/data"; // عدّل الـ IP
+    // هذا رابط الـ Flask endpoint الذي سيرجع آخر HTML (نص) من n8n عبر السيرفر
+    const API_URL = "http://<YOUR_SERVER_IP>:5001/data"; // عدّل الـ IP أو domain هنا
 
     async function fetchContent() {
       try {
+        // نقرأ كـ نص لأن الباك إند سيرجع HTML جاهز للعرض
         const res = await fetch(API_URL, { cache: 'no-store' });
         if (!res.ok) throw new Error('network');
-        const data = await res.text(); // 👈 استقبل HTML مش JSON
+        const html = await res.text();
 
         const contentEl = document.getElementById("content");
-        if (data.trim() !== "") {
-          contentEl.innerHTML = data;
+        if (html && html.trim() !== "") {
+          // نستخدم innerHTML لعرض الـ HTML المرسل من n8n
+          contentEl.innerHTML = html;
         }
       } catch (err) {
         console.warn('خطأ في جلب البيانات:', err);
       }
     }
 
+    // جلب مبدئي وتكرار كل 3 ثواني — المحتوى يتغيّر بدون أي اختفاء/ظهور
     fetchContent();
-    setInterval(fetchContent, 3000); // كل 3 ثواني يحدث المحتوى
+    setInterval(fetchContent, 3000);
   </script>
 </body>
 </html>
