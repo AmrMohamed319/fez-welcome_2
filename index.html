@@ -31,7 +31,6 @@
       overflow: hidden;
     }
 
-    /* ---------- Header ---------- */
     .logo-container {
       text-align: center;
       flex: 0 0 auto;
@@ -46,16 +45,6 @@
       direction: ltr;
       unicode-bidi: isolate;
       user-select: none;
-    }
-
-    @keyframes floatPulse {
-      0%,100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-10px) scale(1.05); }
-    }
-
-    .fez-logo span {
-      display: inline-block;
-      animation: floatPulse 3s ease-in-out infinite;
     }
 
     .fez-logo .f { color: var(--pink); }
@@ -73,7 +62,6 @@
       font-weight: 700;
     }
 
-    /* ---------- Main Panel ---------- */
     .welcome-container {
       width: min(94%, 900px);
       flex: 1;
@@ -87,17 +75,15 @@
       box-shadow: 0 0 15px rgba(0,0,0,0.15);
     }
 
-    /* single content area (replace previous multiple lines) */
     #content {
       font-size: clamp(24px, 3.5vw, 32px);
       color: var(--text);
       font-weight: 700;
       text-align: center;
       margin: 10px 0;
-      line-height: 1.2;
+      line-height: 1.4;
     }
 
-    /* ---------- Footer ---------- */
     .footer {
       flex: 0 0 auto;
       text-align: center;
@@ -111,15 +97,6 @@
       font-weight: 600;
       margin-top: 4px;
     }
-
-    /* ---------- Animations ---------- */
-    @keyframes fadeBlink {
-      0% { opacity: 0; transform: scale(0.95); }
-      50% { opacity: 1; transform: scale(1.02); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
-    .fadeBlink { animation: fadeBlink 1.2s ease; }
   </style>
 </head>
 
@@ -132,7 +109,6 @@
   </div>
 
   <main class="welcome-container">
-    <!-- single content element that will be replaced via JS (supports HTML) -->
     <div id="content">أهلاً ومرحبًا بكم في كافيه فيز</div>
   </main>
 
@@ -141,34 +117,25 @@
   </footer>
 
   <script>
-    // ضع هنا رابط الـ webhook بتاع n8n أو أي API يرجع JSON بالشكل: { "content": "<div style='...'>...</div>" }
-    const N8N_URL = "https://amr319.shop/webhook-test/Page";
+    const API_URL = "http://<YOUR_SERVER_IP>:5001/data"; // عدّل الـ IP
 
     async function fetchContent() {
       try {
-        const res = await fetch(N8N_URL, { cache: 'no-store' });
+        const res = await fetch(API_URL, { cache: 'no-store' });
         if (!res.ok) throw new Error('network');
-        const data = await res.json();
+        const data = await res.text(); // 👈 استقبل HTML مش JSON
 
         const contentEl = document.getElementById("content");
-        // data.content متوقع أن يكون نص HTML (مصرح به) — نستخدم innerHTML لعرضه
-        if (data.content && data.content.toString().trim() !== "") {
-          contentEl.innerHTML = data.content;
+        if (data.trim() !== "") {
+          contentEl.innerHTML = data;
         }
-
-        // small visual refresh
-        contentEl.classList.remove("fadeBlink");
-        void contentEl.offsetWidth;
-        contentEl.classList.add("fadeBlink");
-
       } catch (err) {
         console.warn('خطأ في جلب البيانات:', err);
       }
     }
 
-    // initial load + polling
     fetchContent();
-    setInterval(fetchContent, 3000); // كل 3 ثواني — غيّر القيمة لو حابب
+    setInterval(fetchContent, 3000); // كل 3 ثواني يحدث المحتوى
   </script>
 </body>
 </html>
