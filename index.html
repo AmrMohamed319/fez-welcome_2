@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام الولاء</title>
+    <title>كافيه فيز</title>
     <style>
         body {
-            font-family: 'Tahoma', sans-serif;
+            font-family: "Tahoma", sans-serif;
+            background-color: #fce4ec;
             margin: 0;
-            background-color: #f5f5f5;
+            padding: 0;
+            text-align: center;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
         header, footer {
-            background-color: #004aad;
+            background-color: #e91e63;
             color: white;
-            text-align: center;
             padding: 15px 0;
+            font-size: 1.2em;
         }
 
         main {
@@ -28,51 +30,52 @@
             align-items: center;
         }
 
-        .content-box {
-            background: white;
+        .white-box {
+            background-color: white;
             border-radius: 20px;
             padding: 40px;
-            width: 80%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
             max-width: 600px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            text-align: center;
+            width: 80%;
         }
 
-        .greeting {
+        #content {
             font-size: 1.8em;
-            color: #333;
+            color: #444;
         }
     </style>
 </head>
 <body>
+
     <header>
-        <h2>شركة الولاء الذكي</h2>
+        كافيه فيز ☕
     </header>
 
     <main>
-        <div class="content-box">
-            <div id="greeting" class="greeting">مرحبًا بكم في نظام الولاء الخاص بنا!</div>
+        <div class="white-box">
+            <div id="content">أهلاً ومرحبًا بكم في كافيه فيز</div>
         </div>
     </main>
 
     <footer>
-        <p>© 2025 جميع الحقوق محفوظة</p>
+        © 2025 كافيه فيز - جميع الحقوق محفوظة
     </footer>
 
     <script>
-        async function loadGreeting() {
+        async function loadContent() {
             try {
                 const response = await fetch('/data');
                 const data = await response.json();
-                document.getElementById('greeting').textContent = data.greeting;
+                document.getElementById('content').textContent = data.content;
             } catch (err) {
-                console.error('خطأ في تحميل الجملة الترحيبية:', err);
+                console.error('خطأ في تحميل المحتوى:', err);
             }
         }
 
         // التحديث كل 5 ثواني
-        setInterval(loadGreeting, 5000);
-        loadGreeting();
+        setInterval(loadContent, 5000);
+        loadContent();
     </script>
+
 </body>
 </html>
