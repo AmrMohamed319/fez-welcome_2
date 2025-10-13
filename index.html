@@ -1,164 +1,82 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>FEZ Cafe - Welcome</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --pink: #FF4081;
-      --bg: #FFCDD2;
-      --text: #222;
-      --muted: #555;
-    }
-
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background: var(--bg);
-      font-family: 'Cairo', sans-serif;
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      overflow: hidden;
-    }
-
-    /* ---------- Header ---------- */
-    .logo-container {
-      text-align: center;
-      flex: 0 0 auto;
-      margin-top: 10px;
-    }
-
-    .fez-logo {
-      font-family: 'Bubblegum Sans', cursive;
-      font-size: clamp(56px, 8vw, 110px);
-      letter-spacing: clamp(10px, 2.5vw, 20px);
-      line-height: 1;
-      direction: ltr;
-      unicode-bidi: isolate;
-      user-select: none;
-    }
-
-    @keyframes floatPulse {
-      0%,100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-10px) scale(1.05); }
-    }
-
-    .fez-logo span {
-      display: inline-block;
-      animation: floatPulse 3s ease-in-out infinite;
-    }
-
-    .fez-logo .f { color: var(--pink); }
-    .fez-logo .e, .fez-logo .z {
-      color: #fff;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.18);
-    }
-
-    .specialty-coffee {
-      margin-top: 6px;
-      font-size: clamp(12px, 1.2vw, 20px);
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    /* ---------- Main Panel ---------- */
-    .welcome-container {
-      width: min(94%, 900px);
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.15);
-    }
-
-    #content {
-      font-size: clamp(24px, 3.5vw, 32px);
-      color: var(--text);
-      font-weight: 700;
-      text-align: center;
-      margin: 10px 0;
-    }
-
-    /* ---------- Footer ---------- */
-    .footer {
-      flex: 0 0 auto;
-      text-align: center;
-      padding: 4px 0 8px;
-    }
-
-    .brand-url {
-      font-size: 15px;
-      color: var(--muted);
-      letter-spacing: 6px;
-      font-weight: 600;
-      margin-top: 4px;
-    }
-
-    /* ---------- Animations ---------- */
-    @keyframes fadeBlink {
-      0% { opacity: 0; transform: scale(0.95); }
-      50% { opacity: 1; transform: scale(1.02); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
-    .fadeBlink { animation: fadeBlink 1.2s ease; }
-  </style>
-</head>
-
-<body>
-  <div class="logo-container">
-    <div class="fez-logo">
-      <span class="f">F</span><span class="e">E</span><span class="z">Z</span>
-    </div>
-    <div class="specialty-coffee">SPECIALTY COFFEE</div>
-  </div>
-
-  <main class="welcome-container">
-    <div id="content">أهلاً ومرحبًا بكم في كافيه فيز</div>
-  </main>
-
-  <footer class="footer">
-    <div class="brand-url">FEZ CAFE</div>
-  </footer>
-
-  <script>
-    async function fetchContent() {
-      try {
-        const res = await fetch('http://72.60.132.17:5001/data', { cache: 'no-store' });
-        if (!res.ok) throw new Error('network');
-        const data = await res.json();
-
-        const contentEl = document.getElementById("content");
-        if (data.content && data.content.trim() !== "") {
-          contentEl.textContent = data.content;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كافيه فيز</title>
+    <style>
+        body {
+            background-color: #ffe6f2;
+            margin: 0;
+            font-family: "Cairo", sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        contentEl.classList.remove("fadeBlink");
-        void contentEl.offsetWidth;
-        contentEl.classList.add("fadeBlink");
-      } catch (err) {
-        console.warn('خطأ في جلب البيانات:', err);
-      }
-    }
+        header, footer {
+            background-color: #ff80aa;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
 
-    fetchContent();
-    setInterval(fetchContent, 3000);
-  </script>
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .content-box {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .content-box p {
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>كافيه فيز</header>
+
+    <main>
+        <div class="content-box">
+            <p id="content">أهلاً ومرحباً بكم في كافيه فيز ☕</p>
+        </div>
+    </main>
+
+    <footer>© جميع الحقوق محفوظة لكافيه فيز</footer>
+
+    <script>
+        async function updateContent() {
+            try {
+                const response = await fetch("https://YOUR_N8N_URL/webhook/get-message");
+                if (!response.ok) throw new Error("فشل في الاتصال بـ n8n");
+                const data = await response.json();
+                if (data.content) {
+                    document.getElementById("content").innerHTML = data.content;
+                }
+            } catch (err) {
+                console.error("حدث خطأ:", err);
+            }
+        }
+
+        // التحديث أول مرة
+        updateContent();
+
+        // تحديث كل 10 ثواني تلقائياً
+        setInterval(updateContent, 10000);
+    </script>
 </body>
 </html>
