@@ -87,12 +87,14 @@
       box-shadow: 0 0 15px rgba(0,0,0,0.15);
     }
 
+    /* single content area (replace previous multiple lines) */
     #content {
       font-size: clamp(24px, 3.5vw, 32px);
       color: var(--text);
       font-weight: 700;
       text-align: center;
       margin: 10px 0;
+      line-height: 1.2;
     }
 
     /* ---------- Footer ---------- */
@@ -130,6 +132,7 @@
   </div>
 
   <main class="welcome-container">
+    <!-- single content element that will be replaced via JS (supports HTML) -->
     <div id="content">أهلاً ومرحبًا بكم في كافيه فيز</div>
   </main>
 
@@ -138,27 +141,34 @@
   </footer>
 
   <script>
+    // ضع هنا رابط الـ webhook بتاع n8n أو أي API يرجع JSON بالشكل: { "content": "<div style='...'>...</div>" }
+    const N8N_URL = "https://YOUR_N8N_URL/webhook/get-content";
+
     async function fetchContent() {
       try {
-        const res = await fetch('http://72.60.132.17:5001/data', { cache: 'no-store' });
+        const res = await fetch(N8N_URL, { cache: 'no-store' });
         if (!res.ok) throw new Error('network');
         const data = await res.json();
 
         const contentEl = document.getElementById("content");
-        if (data.content && data.content.trim() !== "") {
-          contentEl.textContent = data.content;
+        // data.content متوقع أن يكون نص HTML (مصرح به) — نستخدم innerHTML لعرضه
+        if (data.content && data.content.toString().trim() !== "") {
+          contentEl.innerHTML = data.content;
         }
 
+        // small visual refresh
         contentEl.classList.remove("fadeBlink");
         void contentEl.offsetWidth;
         contentEl.classList.add("fadeBlink");
+
       } catch (err) {
         console.warn('خطأ في جلب البيانات:', err);
       }
     }
 
+    // initial load + polling
     fetchContent();
-    setInterval(fetchContent, 3000);
+    setInterval(fetchContent, 3000); // كل 3 ثواني — غيّر القيمة لو حابب
   </script>
 </body>
 </html>
