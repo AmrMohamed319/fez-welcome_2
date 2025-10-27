@@ -4,12 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>FEZ Cafe - Welcome</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Cairo:wght@400;700&family=Titan+One&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --pink: #FF4081;
-      --bg: #FFCDD2;
+      --bg: #35D3D4;
       --text: #222;
       --muted: #555;
     }
@@ -36,9 +36,8 @@
       flex: 0 0 auto;
       margin-top: 10px;
     }
-
     .fez-logo {
-      font-family: 'Bubblegum Sans', cursive;
+      font-family: 'Titan One', cursive;
       font-size: clamp(56px, 8vw, 110px);
       letter-spacing: clamp(10px, 2.5vw, 20px);
       line-height: 1;
@@ -74,14 +73,14 @@
     }
 
     .welcome-container {
-      width: min(94%, 900px);
+      width: min(96%, 1100px);
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 20px;
+      background: #35D3D4;
+      padding: 15px;
       border-radius: 20px;
       box-shadow: 0 0 15px rgba(0,0,0,0.15);
     }
@@ -130,7 +129,7 @@
 
   <script>
     // هذا رابط الـ Flask endpoint الذي سيرجع آخر HTML (نص) من n8n عبر السيرفر
-    const API_URL = "http://<YOUR_SERVER_IP>:5001/data"; // عدّل الـ IP أو domain هنا
+    const API_URL = "http://72.60.132.17:5001/data"; // عدّل الـ IP أو domain هنا
 
     async function fetchContent() {
       try {
