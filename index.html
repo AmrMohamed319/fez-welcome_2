@@ -231,6 +231,74 @@
         opacity: 0;
       }
     }
+    /* تحسينات للتجاوب مع مختلف الشاشات */
+    @media (max-width: 1600px) {
+      .emoji {
+        font-size: 100px;
+      }
+      .welcome-container {
+        padding: 40px;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .emoji {
+        font-size: 80px;
+      }
+      .floating-element {
+        opacity: 0.7;
+      }
+      .coffee-blob, .abstract-shape {
+        transform: scale(0.8);
+      }
+    }
+
+    @media (max-width: 992px) {
+      .welcome-container {
+        width: min(92%, 800px);
+        padding: 30px;
+        margin: 20px 0;
+      }
+      .emoji {
+        font-size: 70px;
+      }
+      .abstract-shape, .coffee-blob {
+        opacity: 0.5;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .logo-container {
+        margin-top: 20px;
+      }
+      .welcome-container {
+        padding: 25px 20px;
+        margin: 15px 0;
+      }
+      .emoji {
+        font-size: 60px;
+      }
+      .specialty-coffee {
+        letter-spacing: 4px;
+      }
+      .floating-element {
+        display: none;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .welcome-container {
+        width: 94%;
+        padding: 20px 15px;
+      }
+      #content {
+        font-size: clamp(18px, 5vw, 24px);
+      }
+      .fez-logo {
+        font-size: clamp(40px, 8vw, 80px);
+      }
+    }
+    
     /* Footer from welcome_1 */
     .footer {
       flex: 0 0 auto;
@@ -306,7 +374,7 @@
 
   <!-- Welcome container from welcome_1 -->
   <main class="welcome-container">
-    <div id="content">أهلاً ومرحبًا بكم في كافيه فيز</div>
+    <div id="content" style="max-width: 100%; word-wrap: break-word;">أهلاً ومرحبًا بكم في كافيه فيز</div>
   </main>
 
   <!-- Footer from welcome_1 -->
@@ -318,6 +386,28 @@
   <script>
     // هذا رابط الـ Flask endpoint الذي سيرجع آخر HTML (نص) من n8n عبر السيرفر
     const API_URL = "http://72.60.132.17:5001/data"; // عدّل الـ IP أو domain هنا
+
+    // إضافة وظيفة لتعديل العناصر حسب حجم الشاشة
+    function adjustElementsForScreenSize() {
+      const floatingElements = document.querySelectorAll('.floating-element');
+      const width = window.innerWidth;
+      
+      // تعديل مواقع العناصر العائمة حسب حجم الشاشة
+      if (width <= 1200 && width > 768) {
+        floatingElements.forEach(el => {
+          // تقليل الحجم للشاشات المتوسطة
+          el.style.transform = 'scale(0.8)';
+        });
+      } else if (width > 1200) {
+        floatingElements.forEach(el => {
+          el.style.transform = 'scale(1)';
+        });
+      }
+    }
+
+    // تنفيذ التعديلات عند تحميل الصفحة وعند تغيير حجم النافذة
+    window.addEventListener('load', adjustElementsForScreenSize);
+    window.addEventListener('resize', adjustElementsForScreenSize);
 
     async function fetchContent() {
       try {
@@ -457,4 +547,3 @@ function triggerFireworks() {
 
 </body>
 </html>
-
