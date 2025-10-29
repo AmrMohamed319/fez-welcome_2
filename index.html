@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>FEZ Cafe - Welcome</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Cairo:wght@400;700&family=Titan+One&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet>
+  <!-- تصحيح علامة الإغلاق المفقودة في وسم الرابط -->
+  <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Cairo:wght@400;700&family=Titan+One&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <style>
@@ -39,83 +40,83 @@
       position: relative;
     }
 
-    /* Abstract Coffee Background Elements from welcome_2 */
-    .coffee-blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(20px);
-      z-index: 1;
-    }
+/* Abstract Coffee Background Elements from welcome_2 */
+.coffee-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(20px);
+  z-index: 1;
+}
 
-    .abstract-shape {
-      position: absolute;
-      z-index: 1;
-      opacity: 0.2;
-    }
+.abstract-shape {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.2;
+}
 
-    /* Logo styling from welcome_1 */
-    .logo-container {
-      text-align: center;
-      flex: 0 0 auto;
-      margin-top: 30px;
-      position: relative;
-      z-index: 2;
-    }
+/* Logo styling from welcome_1 */
+.logo-container {
+  text-align: center;
+  flex: 0 0 auto;
+  margin-top: 30px;
+  position: relative;
+  z-index: 2;
+}
 
-    .fez-logo {
-      font-family: 'Titan One', cursive;
-      font-size: clamp(56px, 8vw, 110px);
-      letter-spacing: clamp(10px, 2.5vw, 20px);
-      line-height: 1;
-      direction: ltr;
-      unicode-bidi: isolate;
-      user-select: none;
-    }
+.fez-logo {
+  font-family: 'Titan One', cursive;
+  font-size: clamp(56px, 8vw, 110px);
+  letter-spacing: clamp(10px, 2.5vw, 20px);
+  line-height: 1;
+  direction: ltr;
+  unicode-bidi: isolate;
+  user-select: none;
+}
 
-    /* Animation for FEZ from welcome_1 */
-    @keyframes floatPulse {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-10px) scale(1.05); }
-    }
+/* Animation for FEZ from welcome_1 */
+@keyframes floatPulse {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.05); }
+}
 
-    .fez-logo span {
-      display: inline-block;
-      animation: floatPulse 3s ease-in-out infinite;
-    }
+.fez-logo span {
+  display: inline-block;
+  animation: floatPulse 3s ease-in-out infinite;
+}
 
-    .fez-logo .f {
-      color: var(--pink);
-    }
+.fez-logo .f {
+  color: var(--pink);
+}
 
-    .fez-logo .e, .fez-logo .z {
-      color: #fff;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.18);
-    }
+.fez-logo .e, .fez-logo .z {
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.18);
+}
 
-    .fez-logo .e {
-      animation-delay: 0.2s;
-    }
+.fez-logo .e {
+  animation-delay: 0.2s;
+}
 
-    .fez-logo .z {
-      animation-delay: 0.4s;
-    }
+.fez-logo .z {
+  animation-delay: 0.4s;
+}
 
-    /* Specialty coffee text from welcome_1 */
-    .specialty-coffee {
-      margin-top: 6px;
-      font-size: clamp(12px, 1.2vw, 20px);
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 700;
-    }
+/* Specialty coffee text from welcome_1 */
+.specialty-coffee {
+  margin-top: 6px;
+  font-size: clamp(12px, 1.2vw, 20px);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
 
-    /* Welcome container from welcome_1 but with styling from welcome_2 */
-    .welcome-container {
-      width: min(96%, 1100px);
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+/* Welcome container from welcome_1 but with styling from welcome_2 */
+.welcome-container {
+  width: min(96%, 1100px);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
       justify-content: center;
       align-items: center;
       background-color: rgba(255, 255, 255, 0.6);
@@ -156,44 +157,44 @@
       z-index: 5;
     }
 
-    .steam {
-      position: absolute;
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 30px;
-      animation: steam 3s ease-in-out infinite;
-    }
+.steam {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 30px;
+  animation: steam 3s ease-in-out infinite;
+}
 
-    .vapor {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 50%;
-      filter: blur(3px);
-    }
+.vapor {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  filter: blur(3px);
+}
 
-    .vapor-1 {
-      animation: vapor-rise 4s ease-out infinite;
-    }
+.vapor-1 {
+  animation: vapor-rise 4s ease-out infinite;
+}
 
-    .vapor-2 {
-      animation: vapor-rise 4s ease-out infinite 0.5s;
-    }
+.vapor-2 {
+  animation: vapor-rise 4s ease-out infinite 0.5s;
+}
 
-    .vapor-3 {
-      animation: vapor-rise 4s ease-out infinite 1s;
-    }
+.vapor-3 {
+  animation: vapor-rise 4s ease-out infinite 1s;
+}
 
-    .vapor-4 {
-      animation: vapor-rise 4s ease-out infinite 1.5s;
-    }
+.vapor-4 {
+  animation: vapor-rise 4s ease-out infinite 1.5s;
+}
 
-    .vapor-5 {
-      animation: vapor-rise 4s ease-out infinite 2s;
-    }
+.vapor-5 {
+  animation: vapor-rise 4s ease-out infinite 2s;
+}
 
-    @keyframes float {
-      0% { transform: translateY(0) rotate(0deg); }
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); }
       50% { transform: translateY(-15px) rotate(5deg); }
       100% { transform: translateY(0) rotate(0deg); }
     }
@@ -253,10 +254,12 @@
 <body>
   <!-- Abstract background elements from welcome_2 -->
   <div class="coffee-blob" style="width: 300px; height: 300px; background-color: #6b4423; top: -100px; left: -50px;"></div>
-
-
+  <!-- إضافة عناصر coffee-blob المفقودة -->
+  <div class="coffee-blob" style="width: 250px; height: 250px; background-color: #ff6b9d; bottom: -50px; right: -50px;"></div>
+  <div class="coffee-blob" style="width: 200px; height: 200px; background-color: #fbc2eb; top: 100px; right: 100px;"></div>
 
   <div class="abstract-shape" style="width: 150px; height: 150px; background-color: #ff6b9d; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; top: 50px; left: 200px;"></div>
+  <!-- تصحيح علامة الإغلاق -->
   <div class="abstract-shape" style="width: 120px; height: 120px; background-color: #fbc2eb; border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; bottom: 100px; left: 150px;"></div>
   <div class="abstract-shape" style="width: 180px; height: 180px; background-color: #6b4423; border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; top: 200px; right: 200px;"></div>
 
