@@ -230,7 +230,6 @@
         opacity: 0;
       }
     }
-
     /* Footer from welcome_1 */
     .footer {
       flex: 0 0 auto;
@@ -362,6 +361,12 @@ window.addEventListener("resize", () => {
   fireworksCanvas.height = window.innerHeight;
 });
 
+
+
+
+
+
+
 function launchFireworks() {
   const particles = [];
   const colors = ["#FFD700", "#FF4500", "#FF69B4", "#00BFFF", "#ADFF2F", "#FFA500"];
@@ -385,6 +390,7 @@ function launchFireworks() {
       life: 100
     });
   }
+
   function animateFireworks() {
     fCtx.clearRect(0, 0, fireworksCanvas.width, fireworksCanvas.height);
 
@@ -419,11 +425,12 @@ function flashEffect(x, y) {
   flash.style.top = "0";
   flash.style.width = "100vw";
   flash.style.height = "100vh";
-  flash.style.background = "rgba(255, 255, 255, 0.5)";
+  flash.style.background = "rgba(255, 255, 255, 0.2)";
   flash.style.zIndex = 25;
   flash.style.pointerEvents = "none";
   flash.style.transition = "opacity 0.3s ease-out";
   document.body.appendChild(flash);
+
   setTimeout(() => (flash.style.opacity = "0"), 100);
   setTimeout(() => flash.remove(), 400);
 }
